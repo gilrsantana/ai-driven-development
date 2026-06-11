@@ -1,0 +1,9 @@
+{
+  "name": "custom-agents-plugin",
+  "version": "1.0.0",
+  "description": "Global custom agents for Clean Architecture and GitHub Backlog Management",
+  "author": {
+    "name": "Antigravity Development Team"
+  },
+  "license": "Apache-2.0"
+}
