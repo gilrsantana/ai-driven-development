@@ -1,0 +1,127 @@
+# ==============================================================================
+# Sensitive Data, Environment & Credentials
+# ==============================================================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+*.pfx
+*.cer
+*.crt
+*.p12
+credentials.json
+client_secret*.json
+
+# ==============================================================================
+# OS & System Files
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==============================================================================
+# IDEs & Editors
+# ==============================================================================
+# VS Code
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (Rider, PyCharm, WebStorm, etc.)
+.idea/
+*.iws
+*.out
+
+# Visual Studio / MSBuild
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+.vs/
+
+# ==============================================================================
+# Python Build & Runtime
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ==============================================================================
+# JavaScript / Node / Angular Build & Runtime
+# ==============================================================================
+node_modules/
+/dist/
+/.angular/
+.npm
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ==============================================================================
+# .NET / C# Build & Runtime
+# ==============================================================================
+[Dd]ebug/
+[Dd]ebugPS/
+[Rr]elease/
+[Rr]eleasePS/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+binstar.yaml
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+# EF Core Migrations / SQLite databases
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# ==============================================================================
+# Miscellaneous / User specific
+# ==============================================================================
+*.log
+.gemini/conversations/
+.gemini/scratch/
+.gemini/browser_recordings/
+.gemini/html_artifacts/
+.gemini/worktrees/
