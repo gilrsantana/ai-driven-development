@@ -25,7 +25,8 @@ gemini-agnostic-template/
 │   ├── 09-dependency-injection.md
 │   ├── 10-testing.md
 │   ├── 11-tailwind-styling.md
-│   └── 12-background-jobs.md
+│   ├── 12-background-jobs.md
+│   └── 13-open-knowledge-format.md
 ├── skills/                     # Actionable developer playbooks (skills)
 │   ├── 00-scaffold-feature-playbook/SKILL.md
 │   ├── 01-create-domain-entity/SKILL.md
@@ -38,7 +39,8 @@ gemini-agnostic-template/
 │   ├── 08-setup-identity-and-auth/SKILL.md
 │   ├── 09-frontend-framework-definitions/SKILL.md
 │   ├── 10-frontend-feature-scaffolding/SKILL.md
-│   └── 11-database-migrations/SKILL.md
+│   ├── 11-database-migrations/SKILL.md
+│   └── 12-manage-okf-documentation/SKILL.md
 └── templates/                  # Prompt templates
     ├── boilerplate-prompt-template.md
     └── scafold-feature-prompt-template.md

@@ -78,7 +78,7 @@ The `scripts` directory contains Python automation scripts for GitHub API integr
 The [gemini-agnostic-template](./gemini-agnostic-template/) directory contains a complete, reusable, and project-agnostic configuration of coding rules, execution playbooks (skills), and prompt templates. It isolates general architectural rules (Clean Architecture, CQRS, Angular best practices) from any project-specific names or database engines.
  
 ### 📘 Architecture Rules (`rules/`)
-Contains 12 guidelines that outline design principles for high-quality .NET and Angular development:
+Contains 13 guidelines that outline design principles for high-quality .NET and Angular development:
 * **[01-formatting-syntax.md](./gemini-agnostic-template/rules/01-formatting-syntax.md)**: Formatting, naming conventions, and syntax rules.
 * **[02-clean-architecture.md](./gemini-agnostic-template/rules/02-clean-architecture.md)**: Layer dependency flows and structure (Domain, Application, Infrastructure, Presentation, Shared).
 * **[03-result-error-handling.md](./gemini-agnostic-template/rules/03-result-error-handling.md)**: Standardizing flow control with `Result` types instead of throwing exceptions.
@@ -91,6 +91,7 @@ Contains 12 guidelines that outline design principles for high-quality .NET and 
 * **[10-testing.md](./gemini-agnostic-template/rules/10-testing.md)**: Guidelines for writing unit tests with `xUnit` and `Moq`.
 * **[11-tailwind-styling.md](./gemini-agnostic-template/rules/11-tailwind-styling.md)**: Styling guidelines and rules when using TailwindCSS.
 * **[12-background-jobs.md](./gemini-agnostic-template/rules/12-background-jobs.md)**: Instructions and architectural patterns for implementing background processing.
+* **[13-open-knowledge-format.md](./gemini-agnostic-template/rules/13-open-knowledge-format.md)**: Guidelines and standards for documentation in Google's Open Knowledge Format (OKF) v0.1.
  
 ### 🛠️ Execution Skills (`skills/`)
 Playbooks defining exact step-by-step instructions for coding operations:
@@ -106,6 +107,7 @@ Playbooks defining exact step-by-step instructions for coding operations:
 * **[09-frontend-framework-definitions](./gemini-agnostic-template/skills/09-frontend-framework-definitions/SKILL.md)**: Enforcing layout, routing, components, and Angular modules standards.
 * **[10-frontend-feature-scaffolding](./gemini-agnostic-template/skills/10-frontend-feature-scaffolding/SKILL.md)**: Playbook for scaffolding frontend services and components.
 * **[11-database-migrations](./gemini-agnostic-template/skills/11-database-migrations/SKILL.md)**: Safe database migration creation and execution workflows.
+* **[12-manage-okf-documentation](./gemini-agnostic-template/skills/12-manage-okf-documentation/SKILL.md)**: Playbook for generating, cataloging, and validating OKF-compliant documentation bundles.
  
 ### 📝 Prompt Templates (`templates/`)
 * **[boilerplate-prompt-template.md](./gemini-agnostic-template/templates/boilerplate-prompt-template.md)**: Prompt layout used to direct the `dotnet-clean-architect` agent.
