@@ -16,6 +16,10 @@ my-tools/
 │   ├── dotnet-clean-architect/    # Scaffolds new solutions dynamically
 │   ├── github-backlog-reader/     # Reads tasks and orchestrates board status lifecycle
 │   └── senior-fullstack-engineer/  # Implements features across all architectural layers
+├── gemini-agnostic-template/       # Project-agnostic template for rules and skills with bootstrapping
+│   ├── rules/
+│   ├── skills/
+│   └── templates/
 ├── scripts/
 │   ├── create_pr.py               # Automates creation of GitHub Pull Requests
 │   ├── fetch_backlog.py           # Retrieves tasks and status mappings from GitHub Projects v2
@@ -97,6 +101,36 @@ Playbooks defining exact step-by-step instructions for coding operations:
 ### 📝 Prompt Templates (`.gemini/templates/`)
 * **[boilerplate-prompt-template.md](./.gemini/templates/boilerplate-prompt-template.md)**: Prompt layout used to direct the `dotnet-clean-architect` agent.
 * **[scafold-feature-prompt-template.md](./.gemini/templates/scafold-feature-prompt-template.md)**: Template for initiating full-stack feature implementations.
+
+---
+
+## 🌀 Project-Agnostic Gemini Template (`gemini-agnostic-template/`)
+
+The [gemini-agnostic-template](./gemini-agnostic-template/) directory contains a complete, reusable, and project-agnostic configuration of coding rules, execution playbooks (skills), and prompt templates. It isolates general architectural rules (Clean Architecture, CQRS, Angular best practices) from any project-specific names or database engines.
+
+### 🚀 Bootstrapping New Projects
+
+The template includes a bootstrapping script to instantiate concrete, project-specific rules in a target project by replacing `{ProjectName}` placeholders.
+
+To bootstrap a new project:
+1. Navigate to the template directory:
+   ```bash
+   cd gemini-agnostic-template
+   ```
+2. Run the bootstrap script:
+   ```bash
+   ./bootstrap.sh <NewProjectName> [DestinationDirectory]
+   ```
+   * *Example 1 (Generate in the current directory as a `.gemini/` subfolder)*:
+     ```bash
+     ./bootstrap.sh StoreBackend
+     ```
+   * *Example 2 (Generate directly into a new workspace)*:
+     ```bash
+     ./bootstrap.sh StoreBackend /path/to/StoreBackend
+     ```
+
+For more details on custom configurations and guidelines for customization, see the [gemini-agnostic-template/README.md](./gemini-agnostic-template/README.md).
 
 ---
 
