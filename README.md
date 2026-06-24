@@ -8,41 +8,44 @@ Welcome to the **AI-Driven Development & Automation Tools** repository. This pro
 
 ```text
 my-tools/
-├── .gemini/
-│   ├── rules/       # Architectural and formatting standards for code generation
-│   ├── skills/      # Execution playbooks for AI coding tasks
-│   └── templates/   # Standardized prompt templates for development scaffolding
 ├── agents/
-│   ├── dotnet-clean-architect/    # Scaffolds new solutions dynamically
-│   ├── github-backlog-reader/     # Reads tasks and orchestrates board status lifecycle
-│   └── senior-fullstack-engineer/  # Implements features across all architectural layers
+│   ├── documentation-architect/    # Scans codebase and generates UML & C4 diagrams
+│   ├── dotnet-clean-architect/     # Scaffolds new solutions dynamically
+│   ├── github-backlog-reader/      # Reads tasks and orchestrates board status lifecycle
+│   └── senior-fullstack-engineer/   # Implements features across all architectural layers
 ├── gemini-agnostic-template/       # Project-agnostic template for rules and skills with bootstrapping
 │   ├── rules/
 │   ├── skills/
 │   └── templates/
 ├── scripts/
-│   ├── create_pr.py               # Automates creation of GitHub Pull Requests
-│   ├── fetch_backlog.py           # Retrieves tasks and status mappings from GitHub Projects v2
-│   └── update_project_item.py     # Updates status options of items on GitHub Project boards
-└── plugin.json                     # Plugin definition for Custom Agents
+│   ├── create_pr.py                # Automates creation of GitHub Pull Requests
+│   ├── fetch_backlog.py            # Retrieves tasks and status mappings from GitHub Projects v2
+│   └── update_project_item.py      # Updates status options of items on GitHub Project boards
+├── skills/
+│   └── architecture-documentation/  # Skill playbook for diagramming and architecture documentation
+├── plugin.json                     # Plugin definition for Custom Agents
+└── README.md                       # Repository documentation
 ```
 
 ---
 
 ## 🤖 Custom Agents
 
-This repository defines three specialized autonomous subagents under the `agents` folder, registered via [plugin.json](plugin.json):
+This repository defines four specialized autonomous subagents under the `agents` folder, registered via [plugin.json](plugin.json):
 
-1. **[dotnet-clean-architect](./agents/dotnet-clean-architect/agent.json)**:
+1. **[documentation-architect](./agents/documentation-architect/agent.json)**:
+   * **Purpose**: Scans the codebase to generate structured architecture documentation, UML diagrams, and C4 Model diagrams using Mermaid.js with structured descriptions.
+   * **Execution**: Suggests a root-level `docs/` folder with organized subfolders for structural, behavioral, and architectural diagrams.
+
+2. **[dotnet-clean-architect](./agents/dotnet-clean-architect/agent.json)**:
    * **Purpose**: Instantiates fully structured, clean, and building .NET Web API solutions following the Clean Architecture pattern.
-   * **Key Tasks**: Prompts the user for project names, database providers (PostgreSQL, SQL Server, MySQL, SQLite, Oracle), connection strings, and directory paths for rules/skills before scaffolding the projects and linking them to a `.sln` or `.slnx` file.
+   * **Key Tasks**: Scaffolds projects and links them to `.sln` or `.slnx` files after collecting configuration inputs (name, database provider, paths for rules/skills).
 
-2. **[github-backlog-reader](./agents/github-backlog-reader/agent.json)**:
-   * **Purpose**: Connects to a GitHub Project v2 board, reads issues in the backlog/todo column, and coordinates feature branches, code implementation, test execution, PR creation, and branch cleanup.
-   * **Execution Lifecycle**: Follows a strict 12-step automated pipeline from branch checkout to final merge branch cleanup.
+3. **[github-backlog-reader](./agents/github-backlog-reader/agent.json)**:
+   * **Purpose**: Connects to a GitHub Project v2 board, reads backlog/todo tasks, and automates a 12-step pipeline from branch creation to final PR merge.
 
-3. **[senior-fullstack-engineer](./agents/senior-fullstack-engineer/agent.json)**:
-   * **Purpose**: A top-tier developer subagent capable of implementing, refactoring, and optimizing backend code (.NET) and frontend code (Angular) while enforcing strict SOLID, DDD, and Clean Architecture patterns.
+4. **[senior-fullstack-engineer](./agents/senior-fullstack-engineer/agent.json)**:
+   * **Purpose**: Enforces strict SOLID, DDD, and Clean Architecture patterns while implementing, refactoring, and optimizing backend (.NET) and frontend (Angular) features.
 
 ---
 
@@ -69,49 +72,49 @@ The `scripts` directory contains Python automation scripts for GitHub API integr
   ```
 
 ---
-
-## 📑 Gemini Configurations (`.gemini/`)
-
-### 📘 Architecture Rules (`.gemini/rules/`)
-Contains 10 guidelines that outline design principles for high-quality .NET and Angular development:
-* **[01-formatting-syntax.md](./.gemini/rules/01-formatting-syntax.md)**: Formatting, naming conventions, and syntax rules.
-* **[02-clean-architecture.md](./.gemini/rules/02-clean-architecture.md)**: Layer dependency flows and structure (Domain, Application, Infrastructure, Presentation, Shared).
-* **[03-result-error-handling.md](./.gemini/rules/03-result-error-handling.md)**: Standardizing flow control with `Result` types instead of throwing exceptions.
-* **[04-rich-domain.md](./.gemini/rules/04-rich-domain.md)**: Encapsulated domain entities utilizing private constructors, static factory methods, and UUID v7.
-* **[05-custom-cqrs.md](./.gemini/rules/05-custom-cqrs.md)**: Explicit command and query separations without heavy middleware dependencies.
-* **[06-relational-database.md](./.gemini/rules/06-relational-database.md)**: Database configurations, abstractions, and transaction boundaries.
-* **[07-database-mapping.md](./.gemini/rules/07-database-mapping.md)**: Entity Framework Core mappings (avoiding data annotations, utilizing Fluent API).
-* **[08-api-controllers-error-handling.md](./.gemini/rules/08-api-controllers-error-handling.md)**: Exposing REST endpoints and centralizing API exception filters.
-* **[09-dependency-injection.md](./.gemini/rules/09-dependency-injection.md)**: Correct registration configurations for services and interfaces.
-* **[10-testing.md](./.gemini/rules/10-testing.md)**: Guidelines for writing unit tests with `xUnit` and `Moq`.
-
-### 🛠️ Execution Skills (`.gemini/skills/`)
-Playbooks defining exact step-by-step instructions for coding operations:
-* **[00-scaffold-feature-playbook](./.gemini/skills/00-scaffold-feature-playbook.md)**: Outlines high-level workflow orchestration for scaffolding any full-stack feature.
-* **[01-create-domain-entity](./.gemini/skills/01-create-domain-entity.md)**: Detailed steps to write rich domain entities.
-* **[02-create-use-case](./.gemini/skills/02-create-use-case.md)**: How to write command/query handlers and validators.
-* **[03-add-relational-database](./.gemini/skills/03-add-relational-database.md)**: Setting up entity DB configurations and executing migrations.
-* **[04-create-infrastructure-mapping](./.gemini/skills/04-create-infrastructure-mapping.md)**: Creating custom EF Core entity type configurations.
-* **[05-configure-dependency-injection](./.gemini/skills/05-configure-dependency-injection.md)**: Registering application handlers and services.
-* **[06-create-api-controller](./.gemini/skills/06-create-api-controller.md)**: Developing REST API endpoints that return standard HTTP responses.
-* **[07-create-unit-test](./.gemini/skills/07-create-unit-test.md)**: Constructing testing setups.
-* **[08-setup-identity-and-auth](./.gemini/skills/08-setup-identity-and-auth.md)**: Adding JWT-based token authorization security.
-* **[09-angular-frontend-framework-definitions](./.gemini/skills/09-angular-frontend-framework-definitions.md)**: Structuring TypeScript services, guards, and styling rules.
-
-### 📝 Prompt Templates (`.gemini/templates/`)
-* **[boilerplate-prompt-template.md](./.gemini/templates/boilerplate-prompt-template.md)**: Prompt layout used to direct the `dotnet-clean-architect` agent.
-* **[scafold-feature-prompt-template.md](./.gemini/templates/scafold-feature-prompt-template.md)**: Template for initiating full-stack feature implementations.
-
----
-
+ 
 ## 🌀 Project-Agnostic Gemini Template (`gemini-agnostic-template/`)
-
+ 
 The [gemini-agnostic-template](./gemini-agnostic-template/) directory contains a complete, reusable, and project-agnostic configuration of coding rules, execution playbooks (skills), and prompt templates. It isolates general architectural rules (Clean Architecture, CQRS, Angular best practices) from any project-specific names or database engines.
-
+ 
+### 📘 Architecture Rules (`rules/`)
+Contains 12 guidelines that outline design principles for high-quality .NET and Angular development:
+* **[01-formatting-syntax.md](./gemini-agnostic-template/rules/01-formatting-syntax.md)**: Formatting, naming conventions, and syntax rules.
+* **[02-clean-architecture.md](./gemini-agnostic-template/rules/02-clean-architecture.md)**: Layer dependency flows and structure (Domain, Application, Infrastructure, Presentation, Shared).
+* **[03-result-error-handling.md](./gemini-agnostic-template/rules/03-result-error-handling.md)**: Standardizing flow control with `Result` types instead of throwing exceptions.
+* **[04-rich-domain.md](./gemini-agnostic-template/rules/04-rich-domain.md)**: Encapsulated domain entities utilizing private constructors, static factory methods, and UUID v7.
+* **[05-custom-cqrs.md](./gemini-agnostic-template/rules/05-custom-cqrs.md)**: Explicit command and query separations without heavy middleware dependencies.
+* **[06-relational-database.md](./gemini-agnostic-template/rules/06-relational-database.md)**: Database configurations, abstractions, and transaction boundaries.
+* **[07-database-mapping.md](./gemini-agnostic-template/rules/07-database-mapping.md)**: Entity Framework Core mappings (avoiding data annotations, utilizing Fluent API).
+* **[08-api-controllers-error-handling.md](./gemini-agnostic-template/rules/08-api-controllers-error-handling.md)**: Exposing REST endpoints and centralizing API exception filters.
+* **[09-dependency-injection.md](./gemini-agnostic-template/rules/09-dependency-injection.md)**: Correct registration configurations for services and interfaces.
+* **[10-testing.md](./gemini-agnostic-template/rules/10-testing.md)**: Guidelines for writing unit tests with `xUnit` and `Moq`.
+* **[11-tailwind-styling.md](./gemini-agnostic-template/rules/11-tailwind-styling.md)**: Styling guidelines and rules when using TailwindCSS.
+* **[12-background-jobs.md](./gemini-agnostic-template/rules/12-background-jobs.md)**: Instructions and architectural patterns for implementing background processing.
+ 
+### 🛠️ Execution Skills (`skills/`)
+Playbooks defining exact step-by-step instructions for coding operations:
+* **[00-scaffold-feature-playbook](./gemini-agnostic-template/skills/00-scaffold-feature-playbook/SKILL.md)**: Outlines high-level workflow orchestration for scaffolding any full-stack feature.
+* **[01-create-domain-entity](./gemini-agnostic-template/skills/01-create-domain-entity/SKILL.md)**: Detailed steps to write rich domain entities.
+* **[02-create-use-case](./gemini-agnostic-template/skills/02-create-use-case/SKILL.md)**: How to write command/query handlers and validators.
+* **[03-add-relational-database](./gemini-agnostic-template/skills/03-add-relational-database/SKILL.md)**: Setting up entity DB configurations and executing migrations.
+* **[04-create-infrastructure-mapping](./gemini-agnostic-template/skills/04-create-infrastructure-mapping/SKILL.md)**: Creating custom EF Core entity type configurations.
+* **[05-configure-dependency-injection](./gemini-agnostic-template/skills/05-configure-dependency-injection/SKILL.md)**: Registering application handlers and services.
+* **[06-create-api-controller](./gemini-agnostic-template/skills/06-create-api-controller/SKILL.md)**: Developing REST API endpoints that return standard HTTP responses.
+* **[07-create-unit-test](./gemini-agnostic-template/skills/07-create-unit-test/SKILL.md)**: Constructing testing setups.
+* **[08-setup-identity-and-auth](./gemini-agnostic-template/skills/08-setup-identity-and-auth/SKILL.md)**: Adding JWT-based token authorization security.
+* **[09-frontend-framework-definitions](./gemini-agnostic-template/skills/09-frontend-framework-definitions/SKILL.md)**: Enforcing layout, routing, components, and Angular modules standards.
+* **[10-frontend-feature-scaffolding](./gemini-agnostic-template/skills/10-frontend-feature-scaffolding/SKILL.md)**: Playbook for scaffolding frontend services and components.
+* **[11-database-migrations](./gemini-agnostic-template/skills/11-database-migrations/SKILL.md)**: Safe database migration creation and execution workflows.
+ 
+### 📝 Prompt Templates (`templates/`)
+* **[boilerplate-prompt-template.md](./gemini-agnostic-template/templates/boilerplate-prompt-template.md)**: Prompt layout used to direct the `dotnet-clean-architect` agent.
+* **[scafold-feature-prompt-template.md](./gemini-agnostic-template/templates/scafold-feature-prompt-template.md)**: Template for initiating full-stack feature implementations.
+ 
 ### 🚀 Bootstrapping New Projects
-
-The template includes a bootstrapping script to instantiate concrete, project-specific rules in a target project by replacing `{ProjectName}` placeholders.
-
+ 
+The template includes a bootstrapping script to copy the templates and instantly generate concrete, project-specific rules in your target project directory by replacing the `{ProjectName}` placeholders.
+ 
 To bootstrap a new project:
 1. Navigate to the template directory:
    ```bash
@@ -129,9 +132,16 @@ To bootstrap a new project:
      ```bash
      ./bootstrap.sh StoreBackend /path/to/StoreBackend
      ```
-
+ 
 For more details on custom configurations and guidelines for customization, see the [gemini-agnostic-template/README.md](./gemini-agnostic-template/README.md).
-
+ 
+---
+ 
+## 🛠️ Exposed Repository Skills
+ 
+This repository exposes custom execution skills defined under the [skills](./skills/) folder:
+* **[architecture-documentation](./skills/architecture-documentation/SKILL.md)**: Guided playbook for scanning codebases and generating structured UML and C4 diagrams in Mermaid.js.
+ 
 ---
 
 ## 🚀 Getting Started
